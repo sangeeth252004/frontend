@@ -15,7 +15,9 @@ const QAViewPage = () => {
   useEffect(() => {
     const fetchQA = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/questions/${semester}/${subject}/${module}`);
+        const res = await axios.get(
+          `https://backend-wyp5.onrender.com/api/questions/${semester}/${subject}/${module}`
+        );
         setQuestions(res.data);
       } catch (err) {
         console.error('Failed to fetch questions:', err.message);

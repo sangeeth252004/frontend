@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AdminPage.css';
 
+const API_BASE = 'https://backend-wyp5.onrender.com/api';
+
 const AdminPage = () => {
   const [formData, setFormData] = useState({
     semester: '',
@@ -24,8 +26,12 @@ const AdminPage = () => {
   }, []);
 
   const fetchQuestions = async () => {
-    const res = await axios.get('http://localhost:5000/api/questions');
-    setQuestions(res.data);
+    try {
+      const res = await axios.get(`${API_BASE}/questions`);
+      setQuestions(res.data);
+    } catch (error) {
+      alert('❌ Failed to fetch questions');
+    }
   };
 
   const handleChange = (e) => {
@@ -54,10 +60,10 @@ const AdminPage = () => {
 
     try {
       if (editId) {
-        await axios.put(`http://localhost:5000/api/questions/${editId}`, formData); // image update not supported yet
+        await axios.put(`${API_BASE}/questions/${editId}`, formData); // Updating image not supported in PUT yet
         alert('✅ Question updated successfully!');
       } else {
-        await axios.post('http://localhost:5000/api/questions/add', data);
+        await axios.post(`${API_BASE}/questions/add`, data);
         alert('✅ Question added successfully!');
       }
 
@@ -81,8 +87,12 @@ const AdminPage = () => {
 
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this question?')) {
-      await axios.delete(`http://localhost:5000/api/questions/${id}`);
-      fetchQuestions();
+      try {
+        await axios.delete(`${API_BASE}/questions/${id}`);
+        fetchQuestions();
+      } catch (err) {
+        alert('❌ Failed to delete question');
+      }
     }
   };
 
