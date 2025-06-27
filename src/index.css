@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body {
+  -webkit-user-select: none; /* Chrome, Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE10+ */
+  user-select: none;         /* Standard */
+}
+
+body {
+  -webkit-touch-callout: none; /* Disable callout on mobile */
+}
+
+body {
+  -webkit-user-drag: none;   /* Disable drag on images/links */
+}
+
+body {
+  pointer-events: auto;
+}
+
+body, html {
+  -webkit-tap-highlight-color: transparent;
+}
+
