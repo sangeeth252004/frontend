@@ -1,0 +1,32 @@
+.admin-login-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.admin-login-form .form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.admin-login-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.admin-login-form input {
+  width: 100%;
+  padding: 8px;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
