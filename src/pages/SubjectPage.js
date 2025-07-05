@@ -16,9 +16,12 @@ const subjectMap = {
     { name: "Basic Electronics", code: "EC102" },
   ],
   S3: [
-    { name: "Data Structures", code: "CS201" },
-    { name: "Computer Organization", code: "CS202" },
-    { name: "Operating Systems", code: "CS203" },
+    { name: "THEORY OF COMPUTATION", code: "PCCST302" },
+    { name: "DATA STRUCTURES AND ALGORITHMS", code: "PCCST303" },
+    { name: "MATHEMATICS FOR COMPUTER AND INFORMATION SCIENCE-3", code: "CS203" },
+    { name: "DIGITAL ELECTRONICS AND LOGIC DESIGN", code: "GAEST305" },
+    { name: "BASIC CONCEPTS IN COMPUTER NETWORKS", code: "CS205" },
+    { name: "ECONOMICS FOR ENGINEERS", code: "UCHUT346" },
   ],
   S4: [
     { name: "DBMS", code: "CS204" },

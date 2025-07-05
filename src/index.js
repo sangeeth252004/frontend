@@ -12,7 +12,7 @@ root.render(
     <App />
   </React.StrictMode>
 );
-document.addEventListener('contextmenu', e => e.preventDefault());
+//document.addEventListener('contextmenu', e => e.preventDefault());
 
 
 // If you want to start measuring performance in your app, pass a function
