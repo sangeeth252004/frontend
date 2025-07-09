@@ -150,6 +150,17 @@
   white-space: pre-line;
 }
 
+.qa-answer ul {
+  margin: 10px 0 10px 20px;
+  padding-left: 20px;
+}
+
+.qa-answer ul li {
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+
 .qa-answer img {
   max-width: 100%;
   height: auto;
