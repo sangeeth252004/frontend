@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AdminPage.css';
+import { Editor } from '@tinymce/tinymce-react';
 
 const API_BASE = 'https://backend-wyp5.onrender.com/api';
 
@@ -41,6 +42,13 @@ const AdminPage = () => {
     }));
   };
 
+  const handleEditorChange = (content) => {
+    setFormData(prev => ({
+      ...prev,
+      answer: content,
+    }));
+  };
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImage(file);
@@ -60,7 +68,7 @@ const AdminPage = () => {
 
     try {
       if (editId) {
-        await axios.put(`${API_BASE}/questions/${editId}`, formData); // Updating image not supported in PUT yet
+        await axios.put(`${API_BASE}/questions/${editId}`, formData);
         alert('✅ Question updated successfully!');
       } else {
         await axios.post(`${API_BASE}/questions/add`, data);
@@ -133,7 +141,24 @@ const AdminPage = () => {
         </div>
 
         <div className="form-group"><label>Answer</label>
-          <textarea name="answer" value={formData.answer} onChange={handleChange} required />
+          <Editor
+  apiKey="9r5g6vy8d06q1f4ovgzb5kbbgiu2oh4ryo8i1zd53nl78w9b"
+  value={formData.answer}
+  init={{
+    height: 300,
+    menubar: true,
+    plugins: [
+  'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor',
+  'searchreplace', 'visualblocks', 'code', 'fullscreen',
+  'insertdatetime', 'media', 'table', 'help', 'wordcount'
+],
+    toolbar:
+      'undo redo | formatselect | bold italic backcolor | ' +
+      'alignleft aligncenter alignright alignjustify | ' +
+      'bullist numlist outdent indent | removeformat | help | image'
+  }}
+  onEditorChange={handleEditorChange}
+/>
         </div>
 
         <div className="form-group"><label>Difficulty</label>
@@ -175,7 +200,7 @@ const AdminPage = () => {
                 <td>{q.module}</td>
                 <td>{q.difficulty}</td>
                 <td>{q.question}</td>
-                <td>{q.answer}</td>
+                <td dangerouslySetInnerHTML={{ __html: q.answer }}></td>
                 <td>{q.answerType}</td>
                 <td>
                   {q.imageUrl && <img src={q.imageUrl} alt="ans-img" style={{ width: '60px' }} />}
