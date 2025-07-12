@@ -75,15 +75,17 @@ const AdminPage = () => {
         alert('✅ Question added successfully!');
       }
 
-      setFormData({
-        semester: '',
-        subject: '',
-        module: '',
+      // Reset only some fields, keep semester, subject, module
+      setFormData(prev => ({
+        semester: prev.semester,
+        subject: prev.subject,
+        module: prev.module,
         question: '',
         answer: '',
         difficulty: 'Easy',
         answerType: 'Short Answer',
-      });
+      }));
+
       setImage(null);
       setImagePreview(null);
       setEditId(null);
@@ -124,52 +126,62 @@ const AdminPage = () => {
       <h2 className="admin-title">Admin Panel – {editId ? 'Edit' : 'Add'} Question</h2>
 
       <form onSubmit={handleSubmit} className="admin-form" encType="multipart/form-data">
-        <div className="form-group"><label>Semester</label>
+        <div className="form-group">
+          <label>Semester</label>
           <input type="text" name="semester" value={formData.semester} onChange={handleChange} required />
         </div>
 
-        <div className="form-group"><label>Subject</label>
+        <div className="form-group">
+          <label>Subject</label>
           <input type="text" name="subject" value={formData.subject} onChange={handleChange} required />
         </div>
 
-        <div className="form-group"><label>Module</label>
+        <div className="form-group">
+          <label>Module</label>
           <input type="number" name="module" value={formData.module} onChange={handleChange} required />
         </div>
 
-        <div className="form-group"><label>Question</label>
+        <div className="form-group">
+          <label>Question</label>
           <textarea name="question" value={formData.question} onChange={handleChange} required />
         </div>
 
-        <div className="form-group"><label>Answer</label>
+        <div className="form-group">
+          <label>Answer</label>
           <Editor
-  apiKey="9r5g6vy8d06q1f4ovgzb5kbbgiu2oh4ryo8i1zd53nl78w9b"
-  value={formData.answer}
-  init={{
-    height: 300,
-    menubar: true,
-    plugins: [
-  'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor',
-  'searchreplace', 'visualblocks', 'code', 'fullscreen',
-  'insertdatetime', 'media', 'table', 'help', 'wordcount'
-],
-    toolbar:
-      'undo redo | formatselect | bold italic backcolor | ' +
-      'alignleft aligncenter alignright alignjustify | ' +
-      'bullist numlist outdent indent | removeformat | help | image'
-  }}
-  onEditorChange={handleEditorChange}
-/>
+            apiKey="9r5g6vy8d06q1f4ovgzb5kbbgiu2oh4ryo8i1zd53nl78w9b"
+            value={formData.answer}
+            init={{
+              height: 300,
+              menubar: true,
+              plugins: [
+                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor',
+                'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                'insertdatetime', 'media', 'table', 'help', 'wordcount'
+              ],
+              toolbar:
+                'undo redo | formatselect | bold italic backcolor | ' +
+                'alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist outdent indent | removeformat | help | image'
+            }}
+            onEditorChange={handleEditorChange}
+          />
         </div>
 
-        <div className="form-group"><label>Difficulty</label>
+        <div className="form-group">
+          <label>Difficulty</label>
           <select name="difficulty" value={formData.difficulty} onChange={handleChange}>
-            <option value="Easy">Easy</option><option value="Medium">Medium</option><option value="Hard">Hard</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
           </select>
         </div>
 
-        <div className="form-group"><label>Answer Type</label>
+        <div className="form-group">
+          <label>Answer Type</label>
           <select name="answerType" value={formData.answerType} onChange={handleChange}>
-            <option value="Short Answer">Short Answer</option><option value="Long Answer">Long Answer</option>
+            <option value="Short Answer">Short Answer</option>
+            <option value="Long Answer">Long Answer</option>
           </select>
         </div>
 
@@ -189,7 +201,15 @@ const AdminPage = () => {
         <table className="admin-table">
           <thead>
             <tr>
-              <th>Sem</th><th>Subject</th><th>Module</th><th>Difficulty</th><th>Qn</th><th>Ans</th><th>Type</th><th>Image</th><th>Actions</th>
+              <th>Sem</th>
+              <th>Subject</th>
+              <th>Module</th>
+              <th>Difficulty</th>
+              <th>Qn</th>
+              <th>Ans</th>
+              <th>Type</th>
+              <th>Image</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
